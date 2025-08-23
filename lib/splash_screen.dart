@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 5),
     )..forward();
     Timer(const Duration(seconds: 2), () {
       Navigator.of(context).pushReplacementNamed('/home');
@@ -37,16 +37,16 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/golden-jar-logo.png', width: 120, height: 120),
+            Image.asset('assets/golden-jar-logo-inverted.png', width: 120, height: 120),
             const SizedBox(height: 32),
             AnimatedBuilder(
               animation: _controller,
               builder: (context, child) {
-                return LinearProgressIndicator(
+                return CircularProgressIndicator(
                   value: _controller.value,
                   backgroundColor: Colors.white,
                   color: Colors.brown,
-                  minHeight: 8,
+                  strokeWidth: 4,
                 );
               },
             ),
@@ -65,4 +65,3 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     );
   }
 }
-

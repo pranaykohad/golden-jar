@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'child_dashboard.dart';
+
 class HomeComponent extends StatefulWidget {
   const HomeComponent({super.key});
 
@@ -8,53 +10,34 @@ class HomeComponent extends StatefulWidget {
 }
 
 class _HomeComponentState extends State<HomeComponent> {
-  final TextEditingController _controller = TextEditingController();
-  String _displayText = '';
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Golden Jar')),
+      backgroundColor: Colors.amber[100],
+      appBar: AppBar(title: const Text('Dashboard')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextField(
-              controller: _controller,
-              decoration: const InputDecoration(
-                labelText: 'Enter text',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.amber,
-                foregroundColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Align(
+                alignment: Alignment.topCenter,
+                child: SizedBox(
+                  width: double.infinity,
+                  child: ChildDashboard(childName: 'Pranay Kohad'),
                 ),
               ),
-              onPressed: () {
-                setState(() {
-                  _displayText = _controller.text;
-                });
-              },
-              child: const Text('Press Me'),
-            ),
-            const SizedBox(height: 24),
-            Text(
-              _displayText,
-              style: const TextStyle(fontSize: 18),
-            ),
-          ],
+              const SizedBox(height: 16),
+              Align(
+                alignment: Alignment.topCenter,
+                child: SizedBox(
+                  width: double.infinity,
+                  child: ChildDashboard(childName: 'Pawan Kohad'),
+                ),
+              ),
+            ],
         ),
       ),
     );
