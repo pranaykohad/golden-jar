@@ -10,6 +10,7 @@ class HomeComponent extends StatefulWidget {
 }
 
 class _HomeComponentState extends State<HomeComponent> {
+  final List<String> childNames = ['Pranay Kohad', 'Pawan Kohad'];
 
   @override
   Widget build(BuildContext context) {
@@ -18,26 +19,23 @@ class _HomeComponentState extends State<HomeComponent> {
       appBar: AppBar(title: const Text('Dashboard')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Align(
-                alignment: Alignment.topCenter,
-                child: SizedBox(
-                  width: double.infinity,
-                  child: ChildDashboard(childName: 'Pranay Kohad'),
+        child: ListView.builder(
+          itemCount: childNames.length,
+          itemBuilder: (context, index) {
+            return Column(
+              children: [
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: ChildDashboard(childName: childNames[index]),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 16),
-              Align(
-                alignment: Alignment.topCenter,
-                child: SizedBox(
-                  width: double.infinity,
-                  child: ChildDashboard(childName: 'Pawan Kohad'),
-                ),
-              ),
-            ],
+                if (index < childNames.length - 1)
+                  const SizedBox(height: 16),
+              ],
+            );
+          },
         ),
       ),
     );
